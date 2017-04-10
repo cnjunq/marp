@@ -8,6 +8,14 @@ module.exports = [
     label: '&Gaia'
   }
   {
+    id: 'evening',
+    label: '&Evening'
+  }
+  {
+    id: 'elegant',
+    label: 'E&legant'
+  }
+  {
     id: 'stuq-light',
     label: '&StuQ-Light'
   }
