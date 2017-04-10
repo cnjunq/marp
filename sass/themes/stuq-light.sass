@@ -5,7 +5,7 @@
  */
 
 @import './markdown'
-@import '../../node_modules/highlight.js/styles/sunburst'
+@import '../../node_modules/prismjs/themes/prism-okaidia.css'
 @import url(https://fonts.googleapis.com/css?family=Lato:400,900);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);
 
@@ -34,8 +34,26 @@ $highlight-color: #C82506
     background-color: $text
     background-image: linear-gradient(135deg, rgba(#000, 0), rgba(#000, .02) 50%, rgba(#fff, 0) 50%, rgba(#fff, .05))
 
+    &[class*="language-"]
+      padding: 0
+
+    &.line-numbers
+      padding-left: 3.8em
+
+    &[data-line]
+      padding: 0 0 0 3em
+
+    .line-highlight
+      background: var(--code-text-color);
+      opacity: 0.25
+      margin-top: 0
+
     code
       background: transparent
+      
+      span.command-line-prompt
+          span:last-child
+            display: none
 
   blockquote
     &::after, &::before
