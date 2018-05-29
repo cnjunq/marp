@@ -10,15 +10,15 @@ module.exports = class MdsMarkdown
   @slideTagOpen:  (page) -> '<div class="slide_wrapper" id="' + page + '"><div class="slide"><div class="slide_bg"></div><div class="slide_inner">'
   @slideTagClose: (page) -> '</div><footer class="slide_footer"></footer><span class="slide_page" data-page="' + page + '">' + page + '</span></div></div>'
 
-#  @highlighter: (code, lang) ->
-#    if lang?
-#      if lang == 'text' or lang == 'plain'
-#        return ''
-#      else if highlightJs.getLanguage(lang)
-#        try
-#          return highlightJs.highlight(lang, code).value
-#
-#    highlightJs.highlightAuto(code).value
+  @highlighter: (code, lang) ->
+    if lang?
+      if lang == 'text' or lang == 'plain'
+        return ''
+      else if highlightJs.getLanguage(lang)
+        try
+          return highlightJs.highlight(lang, code, true).value
+
+    highlightJs.highlightAuto(code).value
 
   @default:
     options:
@@ -50,6 +50,9 @@ module.exports = class MdsMarkdown
   @generateAfterRender: ($) ->
     (md) ->
       mdElm = $("<div>#{md.parsed}</div>")
+
+      # Sanitize HTML import
+      mdElm.find('link[rel="import"]').remove()
 
       mdElm.find('p > img[alt~="bg"]').each ->
         $t  = $(@)
